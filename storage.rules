@@ -1,0 +1,7 @@
+rules_version = '2';
+service firebase.storage {
+ match /b/{bucket}/o {
+  // Server uploads and temporary signed image URLs only.
+  match /{path=**} { allow read, write: if false; }
+ }
+}
