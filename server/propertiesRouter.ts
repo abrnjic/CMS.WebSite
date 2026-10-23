@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { createRouter, publicQuery, adminQuery } from "./middleware";
+import { createRouter, publicQuery, adminQuery } from "./middleware.js";
 import {
   listProperties,
   propertyBySlug,
@@ -12,7 +12,7 @@ import {
   createUnit,
   updateUnit,
   deleteUnit,
-} from "./queries/properties";
+} from "./queries/properties.js";
 
 const dateStr = z
   .string()

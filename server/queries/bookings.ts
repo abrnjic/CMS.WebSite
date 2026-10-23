@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
-import { getDb, rows, row, nextId, decode } from "./connection";
-import type { Unit, Booking } from "@db/schema";
+import { getDb, rows, row, nextId, decode } from "./connection.js";
+import type { Unit, Booking } from "../../db/schema.js";
 const DAY = 24 * 60 * 60 * 1000;
 
 function eachNight(checkIn: string, checkOut: string): string[] {

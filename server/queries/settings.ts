@@ -1,5 +1,5 @@
-import { firebaseConfigured } from "../lib/firebase";
-import { getDb } from "./connection";
+import { firebaseConfigured } from "../lib/firebase.js";
+import { getDb } from "./connection.js";
 export async function getSiteSettings(): Promise<Record<string, string>> {
   if (!firebaseConfigured()) return {};
   const result = await getDb().collection("site_settings").get();

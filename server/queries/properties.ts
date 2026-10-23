@@ -1,5 +1,5 @@
-import { getDb, rows, row, update } from "./connection";
-import type { Property, Unit } from "@db/schema";
+import { getDb, rows, row, update } from "./connection.js";
+import type { Property, Unit } from "../../db/schema.js";
 /** decimal/JSON stupci → brojevi; oblik prilagodjen frontend tipovima */
 export function mapUnit(u: Unit) {
   return {
@@ -123,7 +123,7 @@ export async function createProperty(d: PropertyInput) {
   const id = await getDb().runTransaction(async (tx) => {
     const slug = getDb().collection("_property_slugs").doc(d.slug);
     if ((await tx.get(slug)).exists) return null;
-    const { nextId } = await import("./connection");
+    const { nextId } = await import("./connection.js");
     const id = await nextId("properties", tx);
     tx.create(getDb().collection("properties").doc(String(id)), {
       ...propertyRow(d),
@@ -188,7 +188,7 @@ export async function createUnit(propertyId: number, d: UnitInput) {
       db.collection("properties").doc(String(propertyId)),
     );
     if (!prop.exists) throw new Error("Objekt ne postoji");
-    const { nextId } = await import("./connection");
+    const { nextId } = await import("./connection.js");
     const id = await nextId("units", tx);
     tx.create(db.collection("units").doc(String(id)), {
       ...unitRow(propertyId, d),

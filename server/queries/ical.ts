@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
-import { getDb, rows, row, insert, update, decode } from "./connection";
-import type { IcalFeed, Booking, Unit } from "@db/schema";
+import { getDb, rows, row, insert, update, decode } from "./connection.js";
+import type { IcalFeed, Booking, Unit } from "../../db/schema.js";
 export type IcsEvent = {
   uid: string;
   start: string;

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createRouter, publicQuery, adminQuery } from "./middleware";
+import { createRouter, publicQuery, adminQuery } from "./middleware.js";
 import { TRPCError } from "@trpc/server";
 import {
   adminListBookings,
@@ -9,7 +9,7 @@ import {
   quoteBooking,
   bookingByCode,
   allBookedRanges,
-} from "./queries/bookings";
+} from "./queries/bookings.js";
 
 const dateStr = z
   .string()
@@ -50,7 +50,7 @@ export const bookingRouter = createRouter({
     )
     .mutation(async ({ input }) => {
       const result = await createBooking(input);
-      if (!result.ok) {
+      if (result.ok === false) {
         throw new TRPCError({
           code: "CONFLICT",
           message: result.reason ?? "invalid",

@@ -17,7 +17,7 @@ Projekt: **cmswebsites**. Vlasnički račun: **abrnjic@gmail.com** (Vercel `OWNE
 5. Objavite priložena zatvorena sigurnosna pravila iz `firestore.rules` i `storage.rules`. Sav pristup ide kroz API; preglednik nema izravan pristup bazi. Pravila možete kopirati u Firebase konzolu ili koristiti `firebase deploy --only firestore:rules,storage --project cmswebsites` sa svojim Firebase CLI računom. Admin SDK koristi IAM ovlasti servisnog računa i zaobilazi ova pravila.
 6. Napravite novi Vercel deployment nakon promjene varijabli, otvorite `/login`, prijavite se s **abrnjic@gmail.com**, pa na `/postavljanje` unesite naziv i po želji učitajte demo objekte i stranice.
 
-Javna web Firebase konfiguracija već je uključena. Ona **nije** administratorski ključ i ne daje serveru pristup Firestoreu. Dok serverski pristup nije konfiguriran, posjetitelji vide poruku „Stranica se priprema”. Postojeća Vercel zaštita pristupa ostaje uključena dok je vlasnik izričito ne promijeni.
+Javna web Firebase konfiguracija već je uključena. Ona **nije** administratorski ključ i ne daje serveru pristup Firestoreu. Dok serverski pristup nije konfiguriran, posjetitelji vide poruku „Stranica se priprema”. Vlasnik je odobrio javni pristup Vercel stranici.
 
 ## Lokalni rad
 

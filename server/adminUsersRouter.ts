@@ -1,15 +1,15 @@
 import { z } from "zod";
 
-import { createRouter, authedQuery, adminQuery } from "./middleware";
-import { Errors } from "@contracts/errors";
-import { getDb } from "./queries/connection";
+import { createRouter, authedQuery, adminQuery } from "./middleware.js";
+import { Errors } from "../contracts/errors.js";
+import { getDb } from "./queries/connection.js";
 
 import {
   claimAdminInvite,
   createAdminInvite,
   listAdminInvites,
   listUsers,
-} from "./queries/invites";
+} from "./queries/invites.js";
 
 export const adminUsersRouter = createRouter({
   // admin: popis registriranih korisnika

@@ -1,4 +1,4 @@
-import { getDb } from "../server/queries/connection";
+import { getDb } from "../server/queries/connection.js";
 // Seed — pocetni sadrzaj (isti podaci kao u prototipu)
 const season = (base: number) => [
   {

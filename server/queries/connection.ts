@@ -3,8 +3,8 @@ import {
   type DocumentData,
   type Transaction,
 } from "firebase-admin/firestore";
-import { firestore } from "../lib/firebase";
-import type { Tables } from "@db/schema";
+import { firestore } from "../lib/firebase.js";
+import type { Tables } from "../../db/schema.js";
 export const getDb = firestore;
 export function decode<T>(value: unknown): T {
   if (value instanceof Timestamp) return value.toDate() as T;

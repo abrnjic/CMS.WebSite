@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { createRouter, publicQuery, adminQuery } from "./middleware";
-import { getSiteSettings, setSiteSetting } from "./queries/settings";
-import { getDb } from "./queries/connection";
-import { firebaseConfigured } from "./lib/firebase";
+import { createRouter, publicQuery, adminQuery } from "./middleware.js";
+import { getSiteSettings, setSiteSetting } from "./queries/settings.js";
+import { getDb } from "./queries/connection.js";
+import { firebaseConfigured } from "./lib/firebase.js";
 export const setupRouter = createRouter({
   status: publicQuery.query(async () => {
     if (!firebaseConfigured())
@@ -34,7 +34,7 @@ export const setupRouter = createRouter({
       return { ok: true };
     }),
   seedDemo: adminQuery.mutation(async () => {
-    const { runSeed } = await import("../db/seed");
+    const { runSeed } = await import("../db/seed.js");
     return { seeded: await runSeed() };
   }),
 });

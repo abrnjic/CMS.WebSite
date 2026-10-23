@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { calculateQuote } from "./queries/bookings";
-import { appRouter } from "./router";
-import type { Unit, User } from "../db/schema";
+import { calculateQuote } from "./queries/bookings.js";
+import { appRouter } from "./router.js";
+import type { Unit, User } from "../db/schema.js";
 const unit: Unit = {
   id: 1,
   propertyId: 1,

@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { createRouter, publicQuery, adminQuery } from "./middleware";
-import { getSiteSettings, setSiteSetting } from "./queries/settings";
+import { createRouter, publicQuery, adminQuery } from "./middleware.js";
+import { getSiteSettings, setSiteSetting } from "./queries/settings.js";
 
 // dozvoljeni kljucevi site postavki (SEO + brending — bitno za prodane kopije)
 const SETTINGS_KEYS = [

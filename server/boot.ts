@@ -2,11 +2,11 @@ import { Hono } from "hono";
 import { bodyLimit } from "hono/body-limit";
 import type { HttpBindings } from "@hono/node-server";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { appRouter } from "./router";
-import { createContext } from "./context";
-import { firebaseConfigured } from "./lib/firebase";
-import { listProperties } from "./queries/properties";
-import { listPages } from "./queries/cms";
+import { appRouter } from "./router.js";
+import { createContext } from "./context.js";
+import { firebaseConfigured } from "./lib/firebase.js";
+import { listProperties } from "./queries/properties.js";
+import { listPages } from "./queries/cms.js";
 const app = new Hono<{ Bindings: HttpBindings }>();
 app.use(bodyLimit({ maxSize: Math.floor(4.4 * 1024 * 1024) }));
 app.get("/api/health", (c) =>
@@ -16,7 +16,7 @@ app.get("/api/ical/:key", async (c) => {
   const id = Number(c.req.param("key").replace(/\.ics$/i, ""));
   if (!Number.isSafeInteger(id) || id <= 0)
     return c.json({ error: "Bad request" }, 400);
-  const { generateICS } = await import("./queries/ical");
+  const { generateICS } = await import("./queries/ical.js");
   const ics = await generateICS(id);
   return ics
     ? c.text(ics, 200, {
@@ -29,7 +29,7 @@ app.get("/api/media/*", async (c) => {
   const key = c.req.path.slice("/api/media/".length);
   if (!key.startsWith("media/") || key.includes("..") || key.length > 512)
     return c.json({ error: "Bad request" }, 400);
-  const { storage } = await import("./lib/storage");
+  const { storage } = await import("./lib/storage.js");
   try {
     const { url } = await storage.getPresignedUrl({ key });
     return c.redirect(url, 302);

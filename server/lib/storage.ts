@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { firebaseBucket } from "./firebase";
+import { firebaseBucket } from "./firebase.js";
 export const storage = {
   async uploadFile(input: {
     fileContent: Uint8Array;

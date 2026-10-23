@@ -1,5 +1,5 @@
-import type { InsertUser, User } from "@db/schema";
-import { rows, getDb, nextId, decode } from "./connection";
+import type { InsertUser, User } from "../../db/schema.js";
+import { rows, getDb, nextId, decode } from "./connection.js";
 export async function findUserByUnionId(uid: string) {
   return (await rows("users", "unionId", uid))[0];
 }

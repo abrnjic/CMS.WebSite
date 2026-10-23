@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 
-import { createRouter, adminQuery } from "./middleware";
-import { storage } from "./lib/storage";
-import { rows, insert, remove } from "./queries/connection";
+import { createRouter, adminQuery } from "./middleware.js";
+import { storage } from "./lib/storage.js";
+import { rows, insert, remove } from "./queries/connection.js";
 
 // slike do 3 MB (base64 je ~4/3 veci)
 const MAX_BYTES = 3 * 1024 * 1024;

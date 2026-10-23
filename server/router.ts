@@ -1,13 +1,13 @@
-import { authRouter } from "./auth-router";
-import { createRouter, publicQuery } from "./middleware";
-import { propertiesRouter } from "./propertiesRouter";
-import { bookingRouter } from "./bookingRouter";
-import { cmsRouter, themeRouter } from "./cmsRouter";
-import { icalRouter } from "./icalRouter";
-import { mediaRouter } from "./mediaRouter";
-import { settingsRouter } from "./settingsRouter";
-import { adminUsersRouter } from "./adminUsersRouter";
-import { setupRouter } from "./setupRouter";
+import { authRouter } from "./auth-router.js";
+import { createRouter, publicQuery } from "./middleware.js";
+import { propertiesRouter } from "./propertiesRouter.js";
+import { bookingRouter } from "./bookingRouter.js";
+import { cmsRouter, themeRouter } from "./cmsRouter.js";
+import { icalRouter } from "./icalRouter.js";
+import { mediaRouter } from "./mediaRouter.js";
+import { settingsRouter } from "./settingsRouter.js";
+import { adminUsersRouter } from "./adminUsersRouter.js";
+import { setupRouter } from "./setupRouter.js";
 
 export const appRouter = createRouter({
   ping: publicQuery.query(() => ({ ok: true, ts: Date.now() })),

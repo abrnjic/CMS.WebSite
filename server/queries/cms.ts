@@ -1,6 +1,6 @@
 import { TRPCError } from "@trpc/server";
-import { getDb, rows, row, update, remove, nextId, decode } from "./connection";
-import type { Page } from "@db/schema";
+import { getDb, rows, row, update, remove, nextId, decode } from "./connection.js";
+import type { Page } from "../../db/schema.js";
 export async function listPages() {
   return rows("pages");
 }

@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { createRouter, adminQuery } from "./middleware";
+import { createRouter, adminQuery } from "./middleware.js";
 import {
   feedsForUnit,
   addFeed,
   removeFeed,
   syncUnitFeeds,
-} from "./queries/ical";
+} from "./queries/ical.js";
 
 export const icalRouter = createRouter({
   feeds: adminQuery

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createRouter, publicQuery, adminQuery } from "./middleware";
+import { createRouter, publicQuery, adminQuery } from "./middleware.js";
 import {
   listPages,
   getPage,
@@ -12,9 +12,9 @@ import {
   deletePage,
   renamePage,
   updatePageSeo,
-} from "./queries/cms";
-import { firebaseConfigured } from "./lib/firebase";
-import { getDb } from "./queries/connection";
+} from "./queries/cms.js";
+import { firebaseConfigured } from "./lib/firebase.js";
+import { getDb } from "./queries/connection.js";
 
 const blocksSchema = z.array(
   z.object({

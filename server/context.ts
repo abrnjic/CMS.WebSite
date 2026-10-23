@@ -1,7 +1,7 @@
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
-import type { User } from "@db/schema";
-import { firebaseAuth } from "./lib/firebase";
-import { upsertUser } from "./queries/users";
+import type { User } from "../db/schema.js";
+import { firebaseAuth } from "./lib/firebase.js";
+import { upsertUser } from "./queries/users.js";
 export type TrpcContext = { req: Request; resHeaders: Headers; user?: User };
 export async function createContext(
   opts: FetchCreateContextFnOptions,

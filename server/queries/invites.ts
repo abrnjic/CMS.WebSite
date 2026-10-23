@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
-import { getDb, rows, insert, decode } from "./connection";
-import type { AdminInvite, User } from "@db/schema";
+import { getDb, rows, insert, decode } from "./connection.js";
+import type { AdminInvite, User } from "../../db/schema.js";
 export function newInviteCode() {
   return randomBytes(24).toString("base64url");
 }
