@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import { describe, it, expect } from "vitest";
 import { calculateQuote } from "./queries/bookings.js";
 import { appRouter } from "./router.js";
@@ -106,5 +107,12 @@ describe("Administrator authorization", () => {
       configured: false,
       completed: false,
     });
+  });
+});
+
+describe("Vercel runtime compatibility", () => {
+  it("loads Firebase Auth when native require(esm) is disabled", () => {
+    const result = spawnSync(process.execPath, ["--no-experimental-require-module", "--input-type=module", "-e", "await import('firebase-admin/auth')"], { encoding: "utf8", cwd: process.cwd() });
+    expect(result.status, result.stderr).toBe(0);
   });
 });

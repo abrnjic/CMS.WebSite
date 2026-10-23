@@ -69,4 +69,6 @@ Root Directory: korijen repozitorija; Framework: Vite; Install: `npm ci`; Build:
 
 ## Provjera pripreme
 
-TypeScript provjera, frontend build, samostalni Node build i 11 testova cijena/autorizacije prolaze. ESLint još prijavljuje postojeće probleme u izvezenim UI komponentama (Fast Refresh izvoz, setState u efektima i slučajni prikaz skeletona); oni ne blokiraju Vite build. Stvarni Firestore upis, Storage upload i Google prijava moraju se provjeriti nakon dodavanja serverskih vjerodajnica i aktiviranja Firebase servisa.
+TypeScript provjera, frontend build, samostalni Node build i 12 testova cijena/autorizacije prolaze. ESLint još prijavljuje postojeće probleme u izvezenim UI komponentama (Fast Refresh izvoz, setState u efektima i slučajni prikaz skeletona); oni ne blokiraju Vite build. Stvarni Firestore upis, Storage upload i Google prijava moraju se provjeriti nakon dodavanja serverskih vjerodajnica i aktiviranja Firebase servisa.
+
+Firebase Admin SDK je fiksiran na 13.10.0 zbog kompatibilnosti Vercelovog učitavanja CommonJS/ESM modula. Regresijski test provjerava učitavanje Firebase Autha i kad je nativni require(esm) isključen.
