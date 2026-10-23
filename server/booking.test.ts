@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { calculateQuote } from "./queries/bookings.js";
 import { appRouter } from "./router.js";
 import type { Unit, User } from "../db/schema.js";
@@ -114,5 +114,19 @@ describe("Vercel runtime compatibility", () => {
   it("loads Firebase Auth when native require(esm) is disabled", () => {
     const result = spawnSync(process.execPath, ["--no-experimental-require-module", "--input-type=module", "-e", "await import('firebase-admin/auth')"], { encoding: "utf8", cwd: process.cwd() });
     expect(result.status, result.stderr).toBe(0);
+  });
+});
+
+
+describe("Production public URLs", () => {
+  it("uses HTTPS in SEO endpoints behind the Vercel proxy", async () => {
+    vi.stubEnv("VERCEL", "1");
+    try {
+      const { default: app } = await import("./boot.js");
+      const robots = await app.request("http://cms.example/robots.txt");
+      expect(await robots.text()).toContain("Sitemap: https://cms.example/sitemap.xml");
+      const sitemap = await app.request("http://cms.example/sitemap.xml");
+      expect(await sitemap.text()).toContain("<loc>https://cms.example/</loc>");
+    } finally { vi.unstubAllEnvs(); }
   });
 });

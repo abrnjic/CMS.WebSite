@@ -7,6 +7,11 @@ import { createContext } from "./context.js";
 import { firebaseConfigured } from "./lib/firebase.js";
 import { listProperties } from "./queries/properties.js";
 import { listPages } from "./queries/cms.js";
+const publicOrigin = (request: Request) => {
+  const url = new URL(request.url);
+  if (process.env.VERCEL) url.protocol = "https:";
+  return url.origin;
+};
 const app = new Hono<{ Bindings: HttpBindings }>();
 app.use(bodyLimit({ maxSize: Math.floor(4.4 * 1024 * 1024) }));
 app.get("/api/health", (c) =>
@@ -39,11 +44,11 @@ app.get("/api/media/*", async (c) => {
 });
 app.get("/robots.txt", (c) =>
   c.text(
-    `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /login\nDisallow: /postavljanje\nDisallow: /rezervacija\nDisallow: /potvrda\nSitemap: ${new URL(c.req.url).origin}/sitemap.xml\n`,
+    `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api\nDisallow: /login\nDisallow: /postavljanje\nDisallow: /rezervacija\nDisallow: /potvrda\nSitemap: ${publicOrigin(c.req.raw)}/sitemap.xml\n`,
   ),
 );
 app.get("/sitemap.xml", async (c) => {
-  const origin = new URL(c.req.url).origin;
+  const origin = publicOrigin(c.req.raw);
   const escape = (s: string) =>
     s.replace(
       /[&<>"']/g,
