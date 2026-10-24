@@ -276,7 +276,7 @@ export default function PropertyPage() {
                 disabled={!quote?.available}
                 className="mt-5 w-full bg-primary px-4 py-3 font-mono-label text-xs uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
               >
-                Nastavi na placanje
+                Nastavi na rezervaciju
               </button>
               <p className="mt-3 text-center font-mono-label text-[10px] uppercase tracking-widest text-muted-foreground">
                 Cijena se izracunava na serveru
