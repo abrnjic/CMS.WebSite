@@ -72,3 +72,7 @@ Root Directory: korijen repozitorija; Framework: Vite; Install: `npm ci`; Build:
 TypeScript provjera, frontend build, samostalni Node build i 13 testova cijena/autorizacije prolaze. ESLint još prijavljuje postojeće probleme u izvezenim UI komponentama (Fast Refresh izvoz, setState u efektima i slučajni prikaz skeletona); oni ne blokiraju Vite build. Stvarni Firestore upis, Storage upload i Google prijava moraju se provjeriti nakon dodavanja serverskih vjerodajnica i aktiviranja Firebase servisa.
 
 Firebase Admin SDK je fiksiran na 13.10.0 zbog kompatibilnosti Vercelovog učitavanja CommonJS/ESM modula. Regresijski test provjerava učitavanje Firebase Autha i kad je nativni require(esm) isključen.
+
+## Stanje aktivacije (24. 10. 2026.)
+
+Firestore `(default)` je aktiviran u `europe-west3` (Frankfurt) s privatnim pravilima. Vercel funkcije koriste `fra1`, a serverski servisni račun spremljen je kao Sensitive produkcijska varijabla. Google prijava je omogućena, uz domene `cms-rose-rho.vercel.app` i `cms-proservers-projects.vercel.app`. Vlasnik je odabrao nastavak bez uploada novih fotografija na Spark planu. Za kasniju aktivaciju uploada potrebno je uključiti Blaze/Storage, postaviti bucket i njegova pravila, pa postaviti `FIREBASE_STORAGE_ENABLED=1` i napraviti Redeploy.

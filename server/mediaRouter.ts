@@ -9,6 +9,10 @@ import { rows, insert, remove } from "./queries/connection.js";
 const MAX_BYTES = 3 * 1024 * 1024;
 
 export const mediaRouter = createRouter({
+  status: adminQuery.query(() => ({
+    enabled: process.env.FIREBASE_STORAGE_ENABLED === "1",
+  })),
+
   list: adminQuery.query(async () => {
     return (await rows("media_files")).sort(
       (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
@@ -29,6 +33,12 @@ export const mediaRouter = createRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      if (process.env.FIREBASE_STORAGE_ENABLED !== "1") {
+        throw new TRPCError({
+          code: "PRECONDITION_FAILED",
+          message: "Učitavanje novih fotografija još nije uključeno.",
+        });
+      }
       const bytes = Uint8Array.from(Buffer.from(input.contentBase64, "base64"));
       if (bytes.byteLength > MAX_BYTES) {
         throw new TRPCError({

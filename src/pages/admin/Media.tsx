@@ -15,6 +15,8 @@ const toBase64 = (file: File) =>
   });
 
 export default function AdminMedia() {
+  const { data: storageStatus } = trpc.media.status.useQuery();
+  const uploadEnabled = storageStatus?.enabled ?? false;
   const {
     data: files,
     isLoading,
@@ -32,7 +34,7 @@ export default function AdminMedia() {
   const [msg, setMsg] = useState("");
 
   const onFiles = async (list: FileList | null) => {
-    if (!list || list.length === 0) return;
+    if (!uploadEnabled || !list || list.length === 0) return;
     setBusy(true);
     setMsg("");
     let ok = 0;
@@ -79,11 +81,15 @@ export default function AdminMedia() {
           onFiles(e.dataTransfer.files);
         }}
       >
-        <p className="font-display text-xl">Dovucite slike ovdje</p>
-        <p className="mt-1 text-sm text-muted-foreground">ili</p>
+        <p className="font-display text-xl">
+          {uploadEnabled ? "Dovucite slike ovdje" : "Učitavanje fotografija nije uključeno"}
+        </p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          {uploadEnabled ? "ili" : "Postojeće fotografije i dalje su dostupne u uređivaču."}
+        </p>
         <button
           onClick={() => inputRef.current?.click()}
-          disabled={busy}
+          disabled={busy || !uploadEnabled}
           className="mt-3 bg-primary px-6 py-2.5 font-mono-label text-xs uppercase tracking-widest text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-30"
         >
           {busy ? "Učitavam…" : "Odaberi slike"}
