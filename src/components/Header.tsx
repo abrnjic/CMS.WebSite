@@ -71,6 +71,7 @@ export function Header() {
     <>
       <NavLink to="/" className="link-underline-faint text-sm">Naslovnica</NavLink>
       <NavLink to="/smjestaj" className="link-underline-faint text-sm">Smještaj</NavLink>
+      <NavLink to="/kontakt" className="link-underline-faint text-sm">Kontakt</NavLink>
       <NavLink to="/kako-funkcionira" className="link-underline-faint text-sm">Kako funkcionira</NavLink>
     </>
   );

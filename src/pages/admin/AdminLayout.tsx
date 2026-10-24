@@ -81,6 +81,10 @@ export default function AdminLayout() {
               className={({ isActive }) => `block px-3 py-2 text-sm transition-colors ${isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-secondary'}`}>
               Rezervacije
             </NavLink>
+            <NavLink to="/admin/upiti"
+              className={({ isActive }) => `block px-3 py-2 text-sm transition-colors ${isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-secondary'}`}>
+              Upiti
+            </NavLink>
             <NavLink to="/admin/mediji"
               className={({ isActive }) => `block px-3 py-2 text-sm transition-colors ${isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-secondary'}`}>
               Mediji

@@ -26,6 +26,9 @@ import Login from "@/pages/Login";
 import ClaimAdmin from "@/pages/ClaimAdmin";
 import Setup from "@/pages/Setup";
 
+import ContactPage from "@/pages/Contact";
+import AdminInquiries from "@/pages/admin/Inquiries";
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -46,6 +49,7 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/smjestaj" element={<PropertiesPage />} />
               <Route path="/smjestaj/:slug" element={<PropertyPage />} />
+              <Route path="/kontakt" element={<ContactPage />} />
               <Route path="/rezervacija" element={<CheckoutPage />} />
               <Route path="/potvrda/:code" element={<ConfirmationPage />} />
               <Route path="/kako-funkcionira" element={<HowItWorksPage />} />
@@ -61,6 +65,7 @@ export default function App() {
                 <Route path="prodaja" element={<AdminProdaja />} />
                 <Route path="objekti" element={<AdminProperties />} />
                 <Route path="objekti/:id" element={<AdminPropertyEdit />} />
+                <Route path="upiti" element={<AdminInquiries />} />
                 <Route path="rezervacije" element={<AdminBookings />} />
                 <Route path="mediji" element={<AdminMedia />} />
                 <Route path="seo" element={<AdminSeo />} />

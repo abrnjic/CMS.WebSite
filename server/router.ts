@@ -9,11 +9,14 @@ import { settingsRouter } from "./settingsRouter.js";
 import { adminUsersRouter } from "./adminUsersRouter.js";
 import { setupRouter } from "./setupRouter.js";
 
+import { contactRouter } from "./contactRouter.js";
+
 export const appRouter = createRouter({
   ping: publicQuery.query(() => ({ ok: true, ts: Date.now() })),
   auth: authRouter,
   properties: propertiesRouter,
   booking: bookingRouter,
+  contact: contactRouter,
   cms: cmsRouter,
   theme: themeRouter,
   ical: icalRouter,

@@ -20,6 +20,7 @@ export function Footer() {
             <li><Link to="/smjestaj" className="link-underline-faint">Smjestaj</Link></li>
             <li><Link to="/kako-funkcionira" className="link-underline-faint">Kako funkcionira</Link></li>
             <li><Link to="/stranica/o-nama" className="link-underline-faint">O nama</Link></li>
+            <li><Link to="/kontakt" className="link-underline-faint">Kontakt forma</Link></li>
             <li><Link to="/admin" className="link-underline-faint">Admin panel</Link></li>
           </ul>
         </div>

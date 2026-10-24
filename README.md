@@ -69,7 +69,7 @@ Root Directory: korijen repozitorija; Framework: Vite; Install: `npm ci`; Build:
 
 ## Provjera pripreme
 
-TypeScript provjera, frontend build, samostalni Node build i 16 testova cijena/autorizacije prolaze. ESLint još prijavljuje postojeće probleme u izvezenim UI komponentama (Fast Refresh izvoz, setState u efektima i slučajni prikaz skeletona); oni ne blokiraju Vite build. Stvarni Firestore upis, Storage upload i Google prijava moraju se provjeriti nakon dodavanja serverskih vjerodajnica i aktiviranja Firebase servisa.
+TypeScript provjera, frontend build, samostalni Node build i 19 testova cijena/autorizacije/upita prolaze. ESLint još prijavljuje postojeće probleme u izvezenim UI komponentama (Fast Refresh izvoz, setState u efektima i slučajni prikaz skeletona); oni ne blokiraju Vite build. Stvarni Firestore upis, Storage upload i Google prijava moraju se provjeriti nakon dodavanja serverskih vjerodajnica i aktiviranja Firebase servisa.
 
 Firebase Admin SDK je fiksiran na 13.10.0 zbog kompatibilnosti Vercelovog učitavanja CommonJS/ESM modula. Regresijski test provjerava učitavanje Firebase Autha i kad je nativni require(esm) isključen.
 
@@ -78,3 +78,7 @@ Firebase Admin SDK je fiksiran na 13.10.0 zbog kompatibilnosti Vercelovog učita
 Firestore `(default)` je aktiviran u `europe-west3` (Frankfurt) s privatnim pravilima. Vercel funkcije koriste `fra1`, a serverski servisni račun spremljen je kao Sensitive produkcijska varijabla. Google prijava je omogućena, uz domene `cms-rose-rho.vercel.app` i `cms-proservers-projects.vercel.app`. Vlasnik je odabrao nastavak bez uploada novih fotografija na Spark planu. Za kasniju aktivaciju uploada potrebno je uključiti Blaze/Storage, postaviti bucket i njegova pravila, pa postaviti `FIREBASE_STORAGE_ENABLED=1` i napraviti Redeploy.
 
 Aktivna tema iz admina sprema se u Firestore (`site_settings/activeTheme`) i određuje zadani izgled za posjetitelje. Izbor u javnom zaglavlju ostaje osobna postavka posjetitelja.
+
+### Kontakt i upiti
+
+Javna kontakt forma je na `/kontakt`, a poruke se spremaju u Firestore kolekciju `inquiries`. Prijavljeni administratori vide posljednjih 200 poruka na `/admin/upiti` te ih mogu označiti obrađenima i vratiti u nove. Popis i promjena statusa dostupni su samo administratorima; poruke nisu javne. Forma provjerava unos na klijentu i serveru, ima skriveno polje protiv jednostavnog spama i ograničenje jednog upita po e-mail adresi u minuti. Slanje e-mail obavijesti nije konfigurirano; potvrda znači da je poruka spremljena u adminu.
