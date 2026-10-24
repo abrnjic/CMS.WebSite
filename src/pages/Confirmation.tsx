@@ -31,17 +31,22 @@ export default function ConfirmationPage() {
       </div>
     );
 
+  const cancelled = booking.status === "cancelled";
+
   return (
     <div className="mx-auto max-w-[760px] px-6 pb-20 pt-36 text-center">
-      <p className="font-mono-label text-xs uppercase tracking-widest text-success">
-        ✓ Rezervacija spremljena
+      <p
+        className={`font-mono-label text-xs uppercase tracking-widest ${cancelled ? "text-destructive" : "text-success"}`}
+      >
+        {cancelled ? "Rezervacija nije aktivna" : "✓ Rezervacija spremljena"}
       </p>
       <h1 className="mt-4 font-display text-4xl md:text-5xl">
-        Rezervacija potvrdjena
+        {cancelled ? "Rezervacija otkazana" : "Rezervacija potvrđena"}
       </h1>
       <p className="mt-4 text-muted-foreground">
-        Sačuvajte šifru rezervacije. Za plaćanje i upute za dolazak
-        kontaktirajte domaćina.
+        {cancelled
+          ? "Ova rezervacija je otkazana. Za novi termin odaberite smještaj ili kontaktirajte domaćina."
+          : "Sačuvajte šifru rezervacije. Za plaćanje i upute za dolazak kontaktirajte domaćina."}
       </p>
 
       <div className="mt-10 border border-border bg-card p-8">
