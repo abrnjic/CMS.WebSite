@@ -10,7 +10,7 @@ export function Footer() {
         <div className="md:col-span-2">
           <p className="font-display text-2xl">{s.siteName}</p>
           <p className="mt-4 max-w-sm text-sm opacity-70">
-            {s.footerTagline || 'Pažljivo odabrani smještaj uz Jadran — s trenutnom potvrdom, pravim kalendarom dostupnosti i sigurnim plaćanjem.'}
+            {s.footerTagline || 'Pažljivo odabrani smještaj uz Jadran, pregled dostupnosti i izravne rezervacije.'}
           </p>
         </div>
         <div>
