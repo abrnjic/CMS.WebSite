@@ -108,6 +108,28 @@ export const cmsRouter = createRouter({
 });
 
 export const themeRouter = createRouter({
+  active: publicQuery.query(async () => {
+    if (!firebaseConfigured()) return { theme: "mediteran" as const };
+    const setting = await getDb()
+      .collection("site_settings")
+      .doc("activeTheme")
+      .get();
+    const value = setting.data()?.value;
+    const theme: "mediteran" | "obala" | "noc" =
+      value === "obala" || value === "noc" ? value : "mediteran";
+    return { theme };
+  }),
+
+  setActive: adminQuery
+    .input(z.object({ themeKey: z.enum(["mediteran", "obala", "noc"]) }))
+    .mutation(async ({ input }) => {
+      await getDb()
+        .collection("site_settings")
+        .doc("activeTheme")
+        .set({ value: input.themeKey });
+      return { theme: input.themeKey };
+    }),
+
   // javno: svi overridei (aktivna tema cita svoje tokene)
   getAll: publicQuery.query(async () => {
     if (!firebaseConfigured()) return {};
